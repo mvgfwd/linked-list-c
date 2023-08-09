@@ -41,11 +41,11 @@ void tampilkanNode(struct Node* head) {
 
     // Traverse the list and print the data of each node
     while (temporary != NULL) {
-        printf("Employee ID: %d ", temporary->employeeId);
-        printf("Full Name: %s ", temporary->nama);
-        printf("Place of Birth: %s ", temporary->tempatLahir);
-        printf("Date of Birth: %s ", temporary->tanggalLahir);
-        printf("Jabatan: %s ", temporary->jabatan);
+        printf("Employee ID: %d => ", temporary->employeeId);
+        printf("Full Name: %s, ", temporary->nama);
+        printf("Place of Birth: %s, ", temporary->tempatLahir);
+        printf("Date of Birth: %s, ", temporary->tanggalLahir);
+        printf("Jabatan: %s, ", temporary->jabatan);
         temporary = temporary->ref;
         printf("\n");
     }
