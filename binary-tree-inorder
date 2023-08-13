@@ -1,0 +1,65 @@
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* kiri;
+    struct Node* kanan;
+};
+
+// Fungsi memasukkan data elemen dalam node
+struct Node* insert(struct Node* root, int data) {
+    // Jika root kosong, buat root baru
+    if (root == NULL) {
+        struct Node* nodeBaru = (struct Node*)malloc(sizeof(struct Node));
+        nodeBaru->data = data;
+        nodeBaru->kiri = NULL;
+        nodeBaru->kanan = NULL;
+        return nodeBaru;
+    }
+    
+    // Jika data lebih besar, masukkan ke hirarki child kanan
+    if (data > root->data) {
+        root->kanan = insert(root->kanan, data);
+    }else{
+        //Jika lebih kecil atau samadengan, masukkan ke hirarki child kiri
+        root->kiri = insert(root->kiri, data);
+    }
+    return root;
+}
+
+// Fungsi untuk printf in-order traversal
+void inorder(struct Node* root) {
+    if (root != NULL) {
+        inorder(root->kiri);
+        printf("%d ", root->data);
+        inorder(root->kanan);
+    }
+}
+
+int main() {
+    struct Node* root = NULL;
+    int xy;
+    printf("Masukkan Angka Kamu: ");
+    scanf("%d", &xy);
+    printf("\nAngka Kamu: %d\n\n", xy);
+    printf("In-Order Traversal Sebelum & Sesudah Angka Kamu:\n");
+    
+    // Memasukkan data ke dalam binary tree
+    root = insert(root, 1);
+    root = insert(root, 25);
+    root = insert(root, 50);
+    root = insert(root, 75);
+    root = insert(root, 100);
+    
+    // Mencetak inorder traversal tree
+    printf("Sebelum Inorder traversal: ");
+    inorder(root);
+    
+    printf("\nSesudah Inorder traversal: ");
+    root = insert (root, xy);
+    inorder(root);
+    
+    return 0;
+}
